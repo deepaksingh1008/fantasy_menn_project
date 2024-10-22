@@ -1,0 +1,52 @@
+.player-list {
+  margin: 20px 0;
+}
+
+.player-list h2 {
+  font-size: 1.5em;
+}
+
+.player-list ul {
+  list-style: none;
+  padding: 0;
+}
+
+.player-list ul li {
+  margin: 10px 0;
+  display: flex;
+  align-items: center;
+}
+
+.player-list input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+.player-list {
+  margin: 20px 0;
+}
+
+.player-list h2 {
+  font-size: 1.5em;
+}
+
+.player-list ul {
+  list-style: none;
+  padding: 0;
+}
+
+.player-list ul li {
+  margin: 10px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.player-info {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.player-info span {
+  margin-left: 10px;
+}

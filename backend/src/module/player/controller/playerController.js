@@ -3,7 +3,7 @@ import { playerModel } from "../model/PlayerModel.js";
 export const playerController = {
   async createPlayer(req, res) {
     try {
-      const { name, position, team } = req.body;
+      const { name, position, point } = req.body;
       if (!name) {
         return res
           .status(400)
@@ -14,12 +14,12 @@ export const playerController = {
           .status(400)
           .json({ success: false, message: "Position is required" });
       }
-      if (!team) {
+      if (!point) {
         return res
           .status(400)
           .json({ success: false, message: "Team is required" });
       }
-      const player = new playerModel({ name, position, team });
+      const player = new playerModel({ name, position, point });
       await player.save();
       res
         .status(201)

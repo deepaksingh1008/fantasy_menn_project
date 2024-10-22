@@ -1,4 +1,9 @@
 import { teamModel } from "../model/teamModel.js";
+import { playerModel } from "../../player/model/PlayerModel.js";
+async function calculateTotalPoints(playerIds) {
+  const players = await playerModel.find({ _id: { $in: playerIds } });
+  return players.reduce((total, player) => total + player.point, 0);
+}
 
 export const teamController = {
   async createTeam(req, res) {
@@ -14,7 +19,12 @@ export const teamController = {
           .status(500)
           .send({ success: false, message: "Players is required" });
       }
-      const team = await teamModel.create({ name, players });
+      const team = new teamModel({ name, players });
+      await team.save();
+      // Calculate the total points for the team
+      team.totalPoints = await calculateTotalPoints(team.players);
+      await team.save();
+
       return res
         .status(201)
         .send({ success: true, message: "team is created " });
@@ -27,7 +37,7 @@ export const teamController = {
   },
   async getTeam(req, res) {
     try {
-      const team = await Team.findById(req.params.id).populate("players");
+      const team = await teamModel.findById(req.params.id).populate("players");
       if (!team) {
         return res
           .status(404)
