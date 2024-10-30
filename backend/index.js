@@ -12,7 +12,9 @@ app.use(express.json());
 app.use(cors());
 
 //routes
-
+app.get("/", (req, res) => {
+  res.send("Welcome to the API");
+});
 app.use("/api/v1/", playerRouter);
 app.use("/api", teamRouter);
 
