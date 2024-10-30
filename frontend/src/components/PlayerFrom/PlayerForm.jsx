@@ -18,7 +18,7 @@ const PlayerForm = () => {
         };
 
         // Send a POST request to create a new player
-        let response = await fetch(process.env.REACT_APP_API_URL + '/api/v1/create-player', {
+        let response = await fetch('https://fantasy-menn-project.vercel.app/api/v1/create-player', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

@@ -9,7 +9,7 @@ const TeamDisplay = () => {
     useEffect(() => {
         const fetchTeam = async () => {
             try {
-                const response = await fetch(`${process.env.REACT_APP_API_URL}/api/team/${teamId}`);
+                const response = await fetch(`https://fantasy-menn-project.vercel.app/api/team/${teamId}`);
                 const data = await response.json();
                 console.log("Data=>", data);
                 if (data?.success) {

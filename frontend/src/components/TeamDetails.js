@@ -8,7 +8,7 @@ const TeamDetails = ({ teamId }) => {
     const fetchTeamDetails = async () => {
       try {
         const response = await axios.get(
-          `${process.env.REACT_APP_API_URL}/api/teams/${teamId}`
+          `https://fantasy-menn-project.vercel.app/api/teams/${teamId}`
         );
         setTeam(response.data);
       } catch (error) {

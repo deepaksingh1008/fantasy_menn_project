@@ -12,12 +12,11 @@ const CreateTeamForm = () => {
     const [selectedPlayers, setSelectedPlayers] = useState([]);
     const [teamName, setTeamName] = useState("");
     const [totalPoints, setTotalPoints] = useState(0);
-    const [teamId, setTeamIds] = useState({});
     const navigate = useNavigate();
     // Fetch players from backend (replace with your API)
     useEffect(() => {
         const fetchPlayers = async () => {
-            const response = await fetch(process.env.REACT_APP_API_URL + "/api/v1/get-player"); // Example API call
+            const response = await fetch("https://fantasy-menn-project.vercel.app/api/v1/get-player"); // Example API call
             const data = await response.json();
             if (data.success)
                 setPlayers(data.players);
@@ -54,7 +53,7 @@ const CreateTeamForm = () => {
         };
 
         // Submit the team (replace with your API call)
-        let response = await fetch(process.env.REACT_APP_API_URL + "/api/create-team", {
+        let response = await fetch("https://fantasy-menn-project.vercel.app/api/create-team", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
