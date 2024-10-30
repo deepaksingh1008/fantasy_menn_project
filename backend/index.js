@@ -9,7 +9,11 @@ dotenv.config();
 
 //middleware
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin:['https://fantasy-menn-project-yyel.vercel.app'],
+  methods:["POST","GET"],
+  credentials:true
+}));
 
 //routes
 app.get("/", (req, res) => {
