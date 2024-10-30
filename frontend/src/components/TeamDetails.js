@@ -7,7 +7,9 @@ const TeamDetails = ({ teamId }) => {
   useEffect(() => {
     const fetchTeamDetails = async () => {
       try {
-        const response = await axios.get(`/api/teams/${teamId}`);
+        const response = await axios.get(
+          `${process.env.REACT_APP_API_URL}/api/teams/${teamId}`
+        );
         setTeam(response.data);
       } catch (error) {
         console.error(error);

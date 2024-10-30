@@ -8,22 +8,23 @@ const TeamDisplay = () => {
     useEffect(() => {
         const fetchTeam = async () => {
             try {
-                const response = await fetch(`http://localhost:5000/api/team/${teamId}`); // Updated endpoint
+                const response = await fetch(`${process.env.REACT_APP_API_URL}/api/team/${teamId}`);
                 const data = await response.json();
                 console.log("Data=>", data);
-                if (data.success) {
-                    setTeam(data.team);
+                if (data?.success) {
+                    setTeam(data?.team);
                 } else {
                     alert("Error fetching team details.");
                 }
             } catch (error) {
-                console.error("Error fetching team:", error);
+                console.log("Error fetching team:", error);
             }
             setLoading(false);
         };
 
         fetchTeam();
     }, [teamId]);
+
 
     if (loading) return <p>Loading team details...</p>;
 
