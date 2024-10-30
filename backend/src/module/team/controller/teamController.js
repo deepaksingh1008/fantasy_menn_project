@@ -27,7 +27,7 @@ export const teamController = {
 
       return res
         .status(201)
-        .send({ success: true, message: "team is created " });
+        .send({ success: true, message: "team is created ", team });
     } catch (err) {
       console.log("Error in create team api", err);
       res
@@ -37,6 +37,7 @@ export const teamController = {
   },
   async getTeam(req, res) {
     try {
+      console.log(req.params.id);
       const team = await teamModel.findById(req.params.id).populate("players");
       if (!team) {
         return res

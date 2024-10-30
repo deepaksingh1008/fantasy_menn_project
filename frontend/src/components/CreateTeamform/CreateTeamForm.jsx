@@ -4,6 +4,7 @@
 import React, { useState, useEffect } from "react";
 import PlayerList from "../PlayerList/PlayerList";
 import "./CreateTeamForm.css";
+import { useNavigate } from "react-router-dom";
 
 const CreateTeamForm = () => {
 
@@ -11,11 +12,12 @@ const CreateTeamForm = () => {
     const [selectedPlayers, setSelectedPlayers] = useState([]);
     const [teamName, setTeamName] = useState("");
     const [totalPoints, setTotalPoints] = useState(0);
-
+    const [teamId, setTeamIds] = useState({});
+    const navigate = useNavigate();
     // Fetch players from backend (replace with your API)
     useEffect(() => {
         const fetchPlayers = async () => {
-            const response = await fetch("http://localhost:5000/api/v1/get-player"); // Example API call
+            const response = await fetch("https://sport-backend.vercel.app/api/v1/get-player"); // Example API call
             const data = await response.json();
             if (data.success)
                 setPlayers(data.players);
@@ -60,10 +62,12 @@ const CreateTeamForm = () => {
             body: JSON.stringify(teamData),
         });
         response = await response.json();
-        if (response.success) {
+        if (response?.success) {
+            // setTeamIds(response.team._id)
             alert("Team created successfully!");
             setTeamName("");
             setSelectedPlayers([]);
+            navigate(`your-team/${response?.team?._id}`)
         } else {
             alert("Error creating team.");
         }
